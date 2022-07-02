@@ -44,3 +44,42 @@ for row_data in curlist:
       output.writerow(rowdata)
     outputfile.close()
     print('---------------{} 完成导出到 {} 中---------------'.format(vTableName, vCSVFileName))
+
+
+""" 
+if __name__ == '__main__':
+   allinfo_dict = base_finisher("abc","/root/kkk/","/home/aaa/")
+   #使用get（）方法获取字典的键值,可以在这里引用也可以在Oracle生成csv函数里引用
+   localfileallpath1 = allinfo_dict.get('localfileallpath')
+   remotefileallpath1 = allinfo_dict.get('remotefileallpath')
+   mkdirlocalpath1 = allinfo_dict.get('mkdirlocalpath')
+   mkdirremotepath1 = allinfo_dict.get('mkdirremotepath')
+   print(localfileallpath1)
+   print(remotefileallpath1)
+   print(mkdirlocalpath1)
+   print(mkdirremotepath1)
+
+   for conf_line in open(r"C:\Users\zhusd\Desktop\My experience\python\exp_oracle\init_info.conf"):
+       conf_list = conf_line.strip().split(',')
+       #conf_dist = {conf_line0}
+       print(conf_list)
+
+       tablename0 = conf_list[1]
+       sql_path0 = conf_list[2]
+       port0 = conf_list[8]
+       ip0 = conf_list[9]
+       local_pathinit = conf_list[3]
+
+       print(tablename0)
+       print(sql_path0)
+       print(port0)
+       print(ip0)
+       print(local_pathinit)
+
+   tree = ET.parse(r"C:\Users\zhusd\Desktop\My experience\python\exp_oracle\sql\tableA.xml")
+   root = tree.getroot()
+   tablename_object = root.find("tablename")
+   sqlbody_object = root.find("sqlbody")
+   print(tablename_object.text)
+   print(sqlbody_object.text)
+"""
