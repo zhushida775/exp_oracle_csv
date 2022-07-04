@@ -1,0 +1,11 @@
+<data>
+    <tablename>EXP_DATA_TEST_A</tablename>
+    <sqlbody>
+    select t.lsh,
+       t.name,
+       t.age,
+       t.info,
+       t.gxrq,
+       t.bz from EXP_DATA_TEST_A t
+    </sqlbody>
+</data>
