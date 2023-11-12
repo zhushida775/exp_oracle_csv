@@ -1,0 +1,34 @@
+import cx_Oracle  
+import pandas as pd  
+import csv
+# 连接到Oracle数据库  
+dsn_tns = cx_Oracle.makedsn('192.166.84.58', '1521', service_name='helowin')  
+conn = cx_Oracle.connect(user='bjjj', password='oracleadmin', dsn=dsn_tns)  
+cur = conn.cursor() 
+# 读取CSV文件到Pandas DataFrame  
+#df = pd.read_csv('bjjjfile.csv',low_memory=False)  
+file_path = 'bjjjfile_sfz.csv'
+batch_size = 10000 
+with open(file_path, newline='') as csvfile:
+     reader = csv.reader(csvfile)
+     header = next(reader)
+     rows = []
+     for row in reader:
+         rows.append(row)
+         if len(rows) == batch_size:
+            cur.executemany('INSERT INTO user_info_bjjj_sfz(CERT_NO, CERT_LEVEL) VALUES(:1, :2)',rows)
+            rows = []
+     if rows:
+        cur.executemany('INSERT INTO user_info_bjjj_sfz(CERT_NO, CERT_LEVEL) VALUES(:1, :2)',rows)
+
+
+# 将DataFrame插入到Oracle数据库中  
+#table_name = 'USER_INFO_BJJJ'  
+#sql = f"INSERT INTO {table_name} VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17, :18, :19, :20, :21)"  # 根据你的表结构修改插入语句  
+#conn.execute(sql, df.itertuples(index=False))  # 可调整batchsize参数以提高性能  
+#  
+# 提交事务并关闭连接  
+conn.commit()
+cur.close()  
+conn.close()
+
